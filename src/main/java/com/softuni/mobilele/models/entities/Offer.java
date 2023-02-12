@@ -18,7 +18,7 @@ public class Offer extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private EngineType engine;
 
-    @Column(name = "image_url")
+    @Column(name = "image_url", nullable = false)
     private String imageUrl;
 
     @Column(nullable = false)

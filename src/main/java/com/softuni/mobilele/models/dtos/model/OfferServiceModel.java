@@ -1,5 +1,7 @@
 package com.softuni.mobilele.models.dtos.model;
 
+import com.softuni.mobilele.models.enums.EngineType;
+import com.softuni.mobilele.models.enums.TransmissionType;
 import com.softuni.mobilele.validation.YearPastOrPresent;
 import jakarta.validation.constraints.*;
 
@@ -15,10 +17,10 @@ public class OfferServiceModel {
     private BigDecimal price;
 
     @NotNull
-    private String engine;
+    private EngineType engine;
 
     @NotNull
-    private String transmission;
+    private TransmissionType transmission;
 
     @NotNull
     @Positive
@@ -32,7 +34,7 @@ public class OfferServiceModel {
     @Size(min = 10, max = 1000)
     private String description;
 
-    @NotNull
+    @NotEmpty
     private String imageUrl;
 
     public Long getModelId() {
@@ -53,20 +55,20 @@ public class OfferServiceModel {
         return this;
     }
 
-    public String getEngine() {
+    public EngineType getEngine() {
         return engine;
     }
 
-    public OfferServiceModel setEngine(String engine) {
+    public OfferServiceModel setEngine(EngineType engine) {
         this.engine = engine;
         return this;
     }
 
-    public String getTransmission() {
+    public TransmissionType getTransmission() {
         return transmission;
     }
 
-    public OfferServiceModel setTransmission(String transmission) {
+    public OfferServiceModel setTransmission(TransmissionType transmission) {
         this.transmission = transmission;
         return this;
     }
