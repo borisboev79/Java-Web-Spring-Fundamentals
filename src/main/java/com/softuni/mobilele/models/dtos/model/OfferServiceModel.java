@@ -1,10 +1,7 @@
 package com.softuni.mobilele.models.dtos.model;
 
 import com.softuni.mobilele.validation.YearPastOrPresent;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
 
@@ -14,7 +11,7 @@ public class OfferServiceModel {
     private Long modelId;
 
     @NotNull
-    @Min(100)
+    @DecimalMin("100")
     private BigDecimal price;
 
     @NotNull
@@ -31,7 +28,7 @@ public class OfferServiceModel {
     @YearPastOrPresent(minYear = 1930)
     private Integer year;
 
-    @NotNull
+    @NotEmpty
     @Size(min = 10, max = 1000)
     private String description;
 

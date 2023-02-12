@@ -6,6 +6,7 @@ import jakarta.validation.ConstraintValidatorContext;
 import java.time.YearMonth;
 
 public class YearPastOrPresentValidator implements ConstraintValidator<YearPastOrPresent, Integer> {
+
     private int minYear;
 
     @Override
@@ -15,7 +16,7 @@ public class YearPastOrPresentValidator implements ConstraintValidator<YearPastO
 
     @Override
     public boolean isValid(Integer value, ConstraintValidatorContext context) {
-        if (value == 0) {
+        if (value == null) {
             return false;
         }
         int currentYear = YearMonth.now().getYear();

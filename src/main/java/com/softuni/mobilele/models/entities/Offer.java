@@ -24,7 +24,7 @@ public class Offer extends BaseEntity{
     @Column(nullable = false)
     private Integer mileage;
 
-    @Column
+    @Column(nullable = false)
     private BigDecimal price;
 
     @Enumerated(EnumType.STRING)
@@ -33,10 +33,10 @@ public class Offer extends BaseEntity{
     @Column(nullable = false)
     private Year year;
 
-    @OneToOne
+    @OneToOne(optional = false)
     private Model model;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private User seller;
 
     public Offer() {

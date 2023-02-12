@@ -48,7 +48,7 @@ public class OffersController extends BaseController {
     }
 
     @PostMapping("/add")
-    public String addOffer(@Valid @ModelAttribute(name = "offerModel") OfferServiceModel offerModel,
+    public String addOffer(@Valid @ModelAttribute OfferServiceModel offerModel,
                            BindingResult bindingResult,
                            RedirectAttributes redirectAttributes) {
 
