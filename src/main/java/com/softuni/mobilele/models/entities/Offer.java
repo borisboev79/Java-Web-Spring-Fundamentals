@@ -33,7 +33,7 @@ public class Offer extends BaseEntity{
     @Column(nullable = false)
     private Year year;
 
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
     private Model model;
 
     @ManyToOne(optional = false)
