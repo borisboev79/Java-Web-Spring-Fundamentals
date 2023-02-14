@@ -58,11 +58,18 @@ public class OfferServiceImpl implements OfferService, DataBaseInitServiceServic
     }
 
     @Override
+    public Offer findById(Long id) {
+        return this.offerRepository.findById(id).orElseThrow(NoSuchElementException::new);
+    }
+
+    @Override
     public Long saveOffer(OfferServiceModel offerServiceModel) {
         Offer offer = saveToDb(offerServiceModel);
         Offer newEntity = this.offerRepository.saveAndFlush(offer);
         return newEntity.getId();
     }
+
+
 
     @Override
     public void delete(Long id) {

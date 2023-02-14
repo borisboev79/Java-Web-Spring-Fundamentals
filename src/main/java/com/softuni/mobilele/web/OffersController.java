@@ -2,7 +2,6 @@ package com.softuni.mobilele.web;
 
 
 import com.softuni.mobilele.models.dtos.model.OfferServiceModel;
-import com.softuni.mobilele.models.dtos.model.UserLoginServiceModel;
 import com.softuni.mobilele.models.enums.EngineType;
 import com.softuni.mobilele.models.enums.TransmissionType;
 import com.softuni.mobilele.services.brand.BrandService;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -65,15 +63,24 @@ public class OffersController extends BaseController {
     }
 
     @GetMapping("/offer/{id}")
-    public String offerDetails(@PathVariable String id, Model model) {
-        model.addAttribute("id", id);
+    public String offerDetails(@PathVariable Long id, Model model) {
 
-        return "details";
+        model.addAttribute("offer", this.offerService.findById(id));
+
+        return "/details";
+    }
+
+    @GetMapping("/update/{id}")
+    public String updateOffer(@PathVariable Long id, Model model) {
+
+        model.addAttribute("offer", this.offerService.findById(id));
+
+        return "/update";
 
     }
 
     @DeleteMapping("/offer/{id}")
-    public String delete(@PathVariable Long id, Model model){
+    public String delete(@PathVariable Long id) {
 
         offerService.delete(id);
 

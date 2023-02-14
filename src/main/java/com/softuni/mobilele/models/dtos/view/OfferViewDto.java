@@ -7,6 +7,8 @@ import java.math.BigDecimal;
 import java.time.Year;
 
 public class OfferViewDto {
+    private Long id;
+
     private String imageUrl;
 
     private Year year;
@@ -24,6 +26,15 @@ public class OfferViewDto {
     private TransmissionType transmission;
 
     private String description;
+
+    public Long getId() {
+        return id;
+    }
+
+    public OfferViewDto setId(Long id) {
+        this.id = id;
+        return this;
+    }
 
     public String getImageUrl() {
         return imageUrl;
