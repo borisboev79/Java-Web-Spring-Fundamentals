@@ -10,7 +10,6 @@ import com.softuni.mobilele.repositories.OfferRepository;
 import com.softuni.mobilele.repositories.UserRepository;
 import com.softuni.mobilele.security.CurrentUser;
 import com.softuni.mobilele.services.init.DataBaseInitServiceService;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -60,7 +59,7 @@ public class OfferServiceImpl implements OfferService, DataBaseInitServiceServic
 
     @Override
     public Long saveOffer(OfferServiceModel offerServiceModel) {
-        Offer offer = savetoDb(offerServiceModel);
+        Offer offer = saveToDb(offerServiceModel);
         Offer newEntity = this.offerRepository.saveAndFlush(offer);
         return newEntity.getId();
     }
@@ -70,15 +69,22 @@ public class OfferServiceImpl implements OfferService, DataBaseInitServiceServic
         offerRepository.deleteById(id);
     }
 
-    private Offer savetoDb(OfferServiceModel offerServiceModel) {
+    private Offer saveToDb(OfferServiceModel offerServiceModel) {
         Offer offer = new Offer();
-        mapper.map(offerServiceModel, offer);
-        offer.setModel(this.modelRepository.findById(offerServiceModel.getModelId()).get());
+        this.mapper.map(offerServiceModel, offer);
+        offer.setModel(this.modelRepository.findById(offerServiceModel.getId()).get());
         offer.setSeller(this.userRepository.findFirstByUsername(this.currentUser.getName()).get());
         offer.setYear(Year.of(offerServiceModel.getYear()));
         offer.setCreated(Instant.now());
         offer.setModified(Instant.now());
+        while (checkId(offer)){
+           offer.setId(offer.getId() + 1);
+        }
         return offer;
+    }
+
+    private boolean checkId(Offer offer){
+        return this.offerRepository.findById(offer.getId()).isPresent();
     }
 
 

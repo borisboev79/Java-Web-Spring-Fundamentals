@@ -25,9 +25,9 @@
         <div class="row">
 
             <div class="form-group col-md-6 mb-3">
-                <label class="text-center text-white font-weight-bold" for="modelId">Model</label>
-                <select id="modelId"
-                        name="modelId"
+                <label class="text-center text-white font-weight-bold" for="id">Model</label>
+                <select id="id"
+                        name="id"
                         th:errorclass="is-invalid"
                         class="form-control">
                     <option value="">- Select a model -</option>
@@ -37,7 +37,7 @@
                         <option th:each="model : ${brand.models}"
                                 th:value="${model.id}"
                                 th:text="${model.name}"
-                                th:selected="${model.id} == *{modelId}"></option>
+                                th:selected="${model.id} == *{id}"></option>
 
                     </optgroup>
 

@@ -1,16 +1,21 @@
 package com.softuni.mobilele.models.dtos.model;
 
+import com.softuni.mobilele.models.entities.BaseEntity;
 import com.softuni.mobilele.models.enums.EngineType;
 import com.softuni.mobilele.models.enums.TransmissionType;
 import com.softuni.mobilele.validation.YearPastOrPresent;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
 
 public class OfferServiceModel {
-
     @NotNull
-    private Long modelId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @NotNull
     @DecimalMin("100")
@@ -36,15 +41,6 @@ public class OfferServiceModel {
 
     @NotEmpty
     private String imageUrl;
-
-    public Long getModelId() {
-        return modelId;
-    }
-
-    public OfferServiceModel setModelId(Long modelId) {
-        this.modelId = modelId;
-        return this;
-    }
 
     public BigDecimal getPrice() {
         return price;
@@ -109,13 +105,20 @@ public class OfferServiceModel {
         return this;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "OfferServiceModel{" +
-                "modelId=" + modelId +
-                ", price=" + price +
-                ", engine='" + engine + '\'' +
-                ", transmission='" + transmission + '\'' +
+                "price=" + price +
+                ", engine=" + engine +
+                ", transmission=" + transmission +
                 ", mileage=" + mileage +
                 ", year=" + year +
                 ", description='" + description + '\'' +
