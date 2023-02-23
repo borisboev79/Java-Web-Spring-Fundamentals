@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -72,7 +71,7 @@ public class UserServiceImpl implements UserService, DataBaseInitServiceService 
     public void dbInit() {
         if (!isDbInit()) {
 
-            List<User> users = new ArrayList<>();
+            List<User> userEntities = new ArrayList<>();
             User admin = new User().setUsername("boboev")
                     .setPassword(encoder.encode("password"))
                     .setActive(true)
@@ -81,7 +80,7 @@ public class UserServiceImpl implements UserService, DataBaseInitServiceService 
                     .setImageUrl("https://cache2.24chasa.bg/Images/Cache/512/Image_7317512_40_0.jpg")
                     .setRoles(Set.of(roleRepository.findRoleByRole(RoleType.ADMIN), roleRepository.findRoleByRole(RoleType.USER)));
 
-            users.add(admin);
+            userEntities.add(admin);
 
             User pesho = new User().setUsername("pesho")
                     .setPassword(encoder.encode("topsecret"))
@@ -90,10 +89,10 @@ public class UserServiceImpl implements UserService, DataBaseInitServiceService 
                     .setLastName("Черноземски")
                     .setImageUrl("https://photo-forum.net/static/site_pics/2011-09/5_1315603342.jpg")
                     .setRoles(Set.of(roleRepository.findRoleByRole(RoleType.USER)));
-            users.add(pesho);
+            userEntities.add(pesho);
 
 
-            this.userRepository.saveAllAndFlush(users);
+            this.userRepository.saveAllAndFlush(userEntities);
         }
     }
 

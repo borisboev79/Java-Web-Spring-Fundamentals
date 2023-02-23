@@ -17,15 +17,17 @@
             <ul class="navbar-nav mr-auto col-12 justify-content-between">
                 <li class="nav-item"
                 >
-                    <a class="nav-link" href="/brands/all">All Brands</a>
+                    <a class="nav-link" th:href="@{/brands/all}">All Brands</a>
                 </li>
-                <li class="nav-item" th:if="${@currentUser.isLoggedIn()}">
-                    <a class="nav-link" href="/offers/add">Add Offer</a>
+               <li class="nav-item" th:if="${@currentUser.isLoggedIn()}">
+
+                    <a class="nav-link" th:href="@{/offers/add}">Add Offer</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/offers/all">View Offers</a>
+                    <a class="nav-link" th:href="@{/offers/all}">View Offers</a>
                 </li>
                 <li class="nav-item dropdown" th:if="${@currentUser.isAdmin()}">
+
                     <a class="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Admin
@@ -39,16 +41,18 @@
                 </li>
                 <li class="nav-item" th:if="${@currentUser.isLoggedIn()}">
                     <form method="POST"
-                          th:action="@{users/logout}">
+                          th:action="@{users/logout}"
+                    th:href="@{/users/logout}">
                         <div class="form-inline my-2 my-lg-0 border px-3">
                             <div class="logged-user"
                                  th:text="'Welcome, ' + ${@currentUser.name} + '! '"></div>
-                            <input type="submit" STYLE="color: #ffffff; background-color: #383d41" class="btn" value="Logout"></input>
+                            <input type="submit" STYLE="color: #ffffff; background-color: #383d41" class="btn" value="Logout"/>
                         </div>
                     </form>
                 </li>
 
                 <li class="nav-item" th:if="${@currentUser.isAnonymous()}">
+
                     <a class="nav-link" href="/users/register">Register</a>
                 </li>
                 <li class="nav-item" th:if="${@currentUser.isAnonymous()}">

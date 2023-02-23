@@ -5,7 +5,6 @@ import com.softuni.mobilele.models.enums.TransmissionType;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
-import java.time.Instant;
 import java.time.Year;
 
 @Entity

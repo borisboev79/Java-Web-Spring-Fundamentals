@@ -2,7 +2,6 @@ package com.softuni.mobilele.models.entities;
 
 import jakarta.persistence.*;
 
-import java.time.Instant;
 import java.util.Set;
 
 @Entity

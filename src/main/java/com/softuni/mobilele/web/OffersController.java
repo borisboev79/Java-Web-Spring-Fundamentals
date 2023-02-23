@@ -6,6 +6,7 @@ import com.softuni.mobilele.models.enums.EngineType;
 import com.softuni.mobilele.models.enums.TransmissionType;
 import com.softuni.mobilele.services.brand.BrandService;
 import com.softuni.mobilele.services.offers.OfferService;
+import com.softuni.mobilele.services.user.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,11 +19,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class OffersController extends BaseController {
     private final OfferService offerService;
     private final BrandService brandService;
+    private final UserService userService;
 
 
-    public OffersController(OfferService offerService, BrandService brandService) {
+    public OffersController(OfferService offerService, BrandService brandService, UserService userService) {
         this.offerService = offerService;
         this.brandService = brandService;
+        this.userService = userService;
     }
 
     @GetMapping("/all")
@@ -68,6 +71,12 @@ public class OffersController extends BaseController {
         model.addAttribute("offer", this.offerService.findById(id));
 
         return "/details";
+    }
+
+    @PostMapping("/users/logout")
+    public String logout(){
+        userService.logoutCurrentUser();
+        return "redirect:/";
     }
 
     @GetMapping("/update/{id}")
